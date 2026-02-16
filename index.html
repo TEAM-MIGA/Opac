@@ -1,205 +1,305 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OPAC Web Designing</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OPAC Web Designing</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Arial, sans-serif;
-      background: #f8fafc;
-      color: #1e293b;
-      line-height: 1.6;
-    }
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+}
 
-    header {
-      background: #ffffff;
-      border-bottom: 1px solid #e5e7eb;
-      padding: 30px 20px;
-      text-align: center;
-    }
+body{
+  font-family: "Segoe UI", Arial, sans-serif;
+  background:#f8fafc;
+  color:#1e293b;
+  transition:0.3s;
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 32px;
-      color: #2563eb;
-    }
+/* Scroll Progress Bar */
+#progress{
+  position:fixed;
+  top:0;
+  left:0;
+  height:4px;
+  background:#2563eb;
+  width:0%;
+  z-index:1000;
+}
 
-    header p {
-      margin-top: 8px;
-      color: #475569;
-      font-size: 16px;
-    }
+/* Navbar */
+nav{
+  position:sticky;
+  top:0;
+  background:white;
+  padding:15px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #e5e7eb;
+  z-index:999;
+}
 
-    section {
-      max-width: 1000px;
-      margin: auto;
-      padding: 50px 20px;
-    }
+nav a{
+  margin-left:20px;
+  text-decoration:none;
+  color:#1e293b;
+  font-weight:500;
+}
 
-    h2 {
-      color: #1d4ed8;
-      margin-bottom: 10px;
-    }
+nav a:hover{
+  color:#2563eb;
+}
 
-    .card {
-      background: #ffffff;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-      margin-bottom: 30px;
-    }
+/* Hero */
+.hero{
+  text-align:center;
+  padding:80px 20px;
+  background:linear-gradient(to right,#2563eb,#1d4ed8);
+  color:white;
+}
 
-    ul {
-      padding-left: 20px;
-    }
+.hero h1{
+  font-size:42px;
+}
 
-    .price-box {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
+.hero p{
+  margin-top:10px;
+  font-size:18px;
+}
 
-    .price {
-      flex: 1;
-      min-width: 250px;
-      background: #f1f5f9;
-      border-radius: 10px;
-      padding: 20px;
-      text-align: center;
-    }
+.hero button{
+  margin-top:20px;
+  padding:15px 30px;
+  background:white;
+  color:#2563eb;
+  border:none;
+  border-radius:8px;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s;
+}
 
-    .price h3 {
-      margin-top: 0;
-      color: #0f172a;
-    }
+.hero button:hover{
+  transform:scale(1.05);
+}
 
-    .price span {
-      font-size: 28px;
-      font-weight: bold;
-      color: #2563eb;
-    }
+/* Sections */
+section{
+  max-width:1000px;
+  margin:auto;
+  padding:60px 20px;
+}
 
-    footer {
-      background: #ffffff;
-      border-top: 1px solid #e5e7eb;
-      text-align: center;
-      padding: 25px;
-      font-size: 14px;
-      color: #64748b;
-    }
+.card{
+  background:white;
+  padding:25px;
+  border-radius:10px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.06);
+  margin-bottom:30px;
+  opacity:0;
+  transform:translateY(30px);
+  transition:0.6s;
+}
 
-    a {
-      color: #2563eb;
-      text-decoration: none;
-      font-weight: 500;
-    }
+.card.show{
+  opacity:1;
+  transform:translateY(0);
+}
 
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+h2{
+  color:#1d4ed8;
+  margin-bottom:10px;
+}
+
+ul{
+  padding-left:20px;
+}
+
+.price-box{
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+}
+
+.price{
+  flex:1;
+  min-width:250px;
+  background:#f1f5f9;
+  border-radius:10px;
+  padding:20px;
+  text-align:center;
+  transition:0.3s;
+}
+
+.price:hover{
+  transform:scale(1.05);
+}
+
+.price span{
+  font-size:28px;
+  font-weight:bold;
+  color:#2563eb;
+}
+
+/* Contact Form */
+form input, form textarea{
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+
+form button{
+  padding:12px 20px;
+  background:#2563eb;
+  color:white;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+/* Footer */
+footer{
+  background:white;
+  text-align:center;
+  padding:25px;
+  border-top:1px solid #e5e7eb;
+  font-size:14px;
+  color:#64748b;
+}
+
+/* Dark Mode */
+.dark{
+  background:#0f172a;
+  color:#f1f5f9;
+}
+
+.dark nav,
+.dark footer,
+.dark .card{
+  background:#1e293b;
+}
+
+.dark .price{
+  background:#334155;
+}
+</style>
 </head>
 
 <body>
-0
-<header>
-  <h1>OPAC Web Designing</h1>
-  <p>Professional Websites for Businesses & Individuals</p>
- <center><img src="opac.png" width="300" height="200"</img></center>
-</header>
 
-<section>
+<div id="progress"></div>
 
+<nav>
+  <div><strong>OPAC</strong></div>
+  <div>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+    <a href="#" onclick="toggleDark()">Dark</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>Professional Websites That Grow Businesses</h1>
+  <p>Clean. Fast. Modern.</p>
+  <button onclick="scrollToSection()">Get Started</button>
+</div>
+
+<section id="about">
   <div class="card">
     <h2>About OPAC</h2>
-    <p>
-      OPAC Web Designing provides clean, modern, and responsive websites
-      for people and businesses who want a strong online presence.
-      We focus on clarity, speed, and professional design.
-    </p>
-</div>
-<div class="card">
-<h2>Why Do You Need A Website?</h2>
-<p> A health and flowrishing Business needs an attractive website to
-expand its reach and sales. By Devloping a WebsiteFor you Business 
-you allow the far away people know about you and you Business.</p>
-    </p>
-      <strong>Founder & Developer:</strong> Aryan Chaturvedi
-    </p>
+    <p>OPAC Web Designing builds modern, responsive and professional websites for businesses and individuals.</p>
   </div>
+</section>
 
-  <div class="card">
-    <h2>Who Needs a Website?</h2>
-    <ul>
-      <li>Small businesses and local shops</li>
-      <li>Coaching centers and tutors</li>
-      <li>Doctors, lawyers, and consultants</li>
-      <li>Startups and new brands</li>
-      <li>Students and freelancers</li>
-      <li>Creators, influencers, and YouTubers</li>
-      <li>Schools and institutions</li>
-    </ul>
-  </div>
-
+<section id="services">
   <div class="card">
     <h2>Services</h2>
     <ul>
-      <li>Business websites</li>
-      <li>Personal portfolios</li>
-      <li>Landing pages</li>
-      <li>Website redesign</li>
-      <li>Mobile-friendly design</li>
+      <li>Business Websites</li>
+      <li>Portfolios</li>
+      <li>Landing Pages</li>
+      <li>Website Redesign</li>
+      <li>Mobile Optimization</li>
     </ul>
   </div>
+</section>
 
+<section id="pricing">
   <div class="card">
-    <h2>Low-Cost Pricing</h2>
-    <p>
-      We believe professional websites should be affordable.
-    </p>
-
+    <h2>Pricing</h2>
     <div class="price-box">
       <div class="price">
-        <h3>Basic(1 Page With Basic Text and Design)</h3>
+        <h3>Basic</h3>
         <span>₹200</span>
-        <p>Single-page website<br>Perfect for individuals</p>
+        <p>Single Page Website</p>
       </div>
-
       <div class="price">
-        <h3>Standard( With Brain Features)</h3>
+        <h3>Standard</h3>
         <span>₹1000</span>
-        <p>Multi-page website<br>Best for small businesses</p>
+        <p>Multi Page Website</p>
       </div>
-
       <div class="price">
         <h3>Custom</h3>
-        <span>Flexible( As Per Your Demand)</span>
-        <p>Tailored design<br>As per requirement</p>
+        <span>Flexible</span>
+        <p>As Per Requirement</p>
       </div>
     </div>
   </div>
+</section>
 
+<section id="contact">
   <div class="card">
     <h2>Contact</h2>
-    <p>
-      Email: <br>
-      <strong>
-        <a href="https://mail.google.com/mail/u/0/#inbox/FMfcgzQfBkHsfKxTtCjGZpdCJQrTZLrR?compose=GTvVlcSKjfsdhvgWMmKLTMMXZpCzghcGGhJZwhMkblsqjHPLPqXWpsTcHKBXGqKxpxnbCRcqXTWJL">
-          aryan.chaturvedi9893@gmail.com
-        </a>
-      </strong>
-    </p>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="4" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
   </div>
-
 </section>
 
 <footer>
-  © 2026 OPAC Web Designing | Designed & Developed by Aryan Chaturvedi
+© 2026 OPAC Web Designing | Designed by Aryan Chaturvedi
 </footer>
+
+<script>
+function toggleDark(){
+  document.body.classList.toggle("dark");
+}
+
+function scrollToSection(){
+  document.querySelector("#about").scrollIntoView({behavior:"smooth"});
+}
+
+/* Scroll Progress */
+window.onscroll=function(){
+  let winScroll=document.body.scrollTop||document.documentElement.scrollTop;
+  let height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+  let scrolled=(winScroll/height)*100;
+  document.getElementById("progress").style.width=scrolled+"%";
+};
+
+/* Fade In Animation */
+const cards=document.querySelectorAll(".card");
+window.addEventListener("scroll",()=>{
+  cards.forEach(card=>{
+    const top=card.getBoundingClientRect().top;
+    if(top<window.innerHeight-100){
+      card.classList.add("show");
+    }
+  });
+});
+</script>
 
 </body>
 </html>
